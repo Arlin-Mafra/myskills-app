@@ -28,6 +28,7 @@ export function Home() {
     };
 
     setMySkills((oldState) => [...oldState, data]);
+    setNewSkill("");
   }
 
   function handleRemoveSkill(id: string) {
@@ -56,16 +57,20 @@ export function Home() {
 
       <TextInput
         style={styles.input}
+        testID="input-skill"
         placeholder="New skill"
         placeholderTextColor="#555"
+        value={newSkill}
         onChangeText={setNewSkill}
       />
 
-      <Button title="Add" onPress={handleAddNewSkill} />
+      <Button title="Add" testID="button-skill" onPress={handleAddNewSkill} />
 
       <Text style={[styles.title, { marginVertical: 50 }]}>MySkills</Text>
 
       <FlatList
+        testID="flat-list-skill"
+        keyboardShouldPersistTaps="never"
         data={mySkills}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
